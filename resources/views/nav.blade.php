@@ -1,42 +1,30 @@
-<nav class="navbar navbar-expand navbar-dark blue-gradient">
-
-  <a class="navbar-brand" href="/"><i class="far fa-sticky-note mr-1"></i>memo</a>
-
-  <ul class="navbar-nav ml-auto">
-
-    <li class="nav-item">
-      <a class="nav-link" href="">ユーザー登録</a>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href="">ログイン</a>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>投稿する</a>
-    </li>
-
-    <!-- Dropdown -->
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-         aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user-circle"></i>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-        <button class="dropdown-item" type="button"
-                onclick="location.href=''">
-          マイページ
-        </button>
-        <div class="dropdown-divider"></div>
-        <button form="logout-button" class="dropdown-item" type="submit">
-          ログアウト
-        </button>
-      </div>
-    </li>
-    <form id="logout-button" method="POST" action="">
-    </form>
-    <!-- Dropdown -->
-
-  </ul>
-
+<nav class="bg-blue-700">
+    <div class="container mx-auto">
+        <div class="flex items-center justify-between h-16">
+            <a class="text-white text-2xl font-bold" href="/">
+                <i class="far fa-sticky-note mr-1"></i>Memo
+            </a>
+            <div class="flex">
+                <ul class="flex items-center">
+                    @guest
+                        <li class="mr-3">
+                            <a class="text-white hover:underline" href="{{ route('register') }}">ユーザー登録</a>
+                        </li>
+                        <li>
+                            <a class="text-white hover:underline" href="{{ route('login') }}">ログイン</a>
+                        </li>
+                    @endguest
+                    @auth
+                        <li>
+                            <a href="{{ route('articles.create') }}"
+                                class="bg-blue-500 hover:bg-blue-600 text-white rounded-md py-2 px-3 flex items-center">
+                                <i class="fas fa-pen mr-1"></i>
+                                <span>投稿する</span>
+                            </a>
+                        </li>
+                    @endauth
+                </ul>
+            </div>
+        </div>
+    </div>
 </nav>

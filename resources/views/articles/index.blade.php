@@ -1,31 +1,33 @@
 @extends('app')
+
 @section('title', '記事一覧')
-@section('content')
+
 @include('nav')
-    <div class="container">
-        @foreach ($articles as $article)
-            <div class="card mt-3">
-                <div class="card-body d-flex flex-row">
-                    <i class="fas fa-user-circle fa-3x mr-1"></i>
-                    <div>
-                        <div class="font-weight-bold">
-                            {{ $article->user->name }}
-                        </div>
-                        <div class="font-weight-lighter">
-                            {{ $article->created_at->format('Y/m/d H:i') }}
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body pt-0 pb-2">
-                    <h3 class="h3 card-title">
-                        {{ $article->titile }}
-                    </h3>
-                    <div class="card-text">
-                        {!! nl2br(e($article->body)) !!}
-                    </div>
-                </div>
+
+@section('content')
+  <div class="container mx-auto my-10">
+    @foreach ($articles as $article)
+      <div class="bg-white p-8 rounded-lg shadow-lg mb-8">
+        <div class="flex items-center">
+          <i class="fas fa-user-circle fa-3x mr-4"></i>
+          <div>
+            <div class="font-bold">
+              {{ $article->user->name }}
             </div>
-        @endforeach
-    </div>
-@endsection
+            <div class="text-gray-600 text-sm">
+              {{ $article->created_at->format('Y/m/d H:i') }}
+            </div>
+          </div>
+        </div>
+        <div class="mt-6">
+          <h3 class="text-lg font-bold mb-2">
+            {{ $article->title }}
+          </h3>
+          <div class="text-gray-700 leading-relaxed">
+            {!! nl2br(e($article->body)) !!}
+          </div>
+        </div>
+      </div>
+    @endforeach
+  </div>
 @endsection
